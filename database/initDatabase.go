@@ -37,4 +37,5 @@ func InitDB() {
 		return
 	}
 	fmt.Println("connnect success")
+	query(DB)
 }
