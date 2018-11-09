@@ -1,7 +1,6 @@
 package main
 
 import (
-	db "llgin/database"
 	get "llgin/getapi"
 	post "llgin/postapi"
 	put "llgin/putapi"
@@ -15,8 +14,6 @@ func main() {
 	post.Postapi(router)
 	get.Getapi(router)
 	put.Putapi(router)
-
-	db.InitDB()
 
 	router.Run(":8000")
 }

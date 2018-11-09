@@ -9,9 +9,13 @@ import (
 func Query1() {
 
 	db := InitDB()
+	defer db.Close()
+
 	start := time.Now()
+
 	rows, _ := db.Query("SELECT * FROM test")
 	defer rows.Close()
+
 	for rows.Next() {
 		var id int
 		var name string
@@ -22,5 +26,4 @@ func Query1() {
 	}
 	end := time.Now()
 	fmt.Println("query total time:", end.Sub(start).Seconds())
-
 }
