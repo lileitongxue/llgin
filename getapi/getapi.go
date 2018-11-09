@@ -1,6 +1,7 @@
 package getapi
 
 import (
+	sql "llgin/database"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -11,6 +12,7 @@ func Getapi(router *gin.Engine) {
 
 	router.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "Hello World")
+		sql.Query1()
 	})
 
 	router.GET("/lilei/", func(c *gin.Context) {

@@ -1,14 +1,14 @@
 package database
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"time"
 )
 
-func query(db *sql.DB) {
+func Query1() {
 
+	db := InitDB()
 	start := time.Now()
 	rows, _ := db.Query("SELECT * FROM test")
 	defer rows.Close()
