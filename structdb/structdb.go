@@ -7,6 +7,7 @@ import (
 type ClusterPool struct {
 	ID           int
 	Name         string
+	Namespace    string
 	ClusterIP    string
 	ClusterPort  int
 	ClusterToken string
