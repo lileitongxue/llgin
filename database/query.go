@@ -2,6 +2,7 @@ package database
 
 import (
 	"fmt"
+	"llgin/structdb"
 	"log"
 	"time"
 )
@@ -17,12 +18,12 @@ func Query1() {
 	defer rows.Close()
 
 	for rows.Next() {
-		var id int
-		var name string
-		if err := rows.Scan(&id, &name); err != nil {
+		var a structdb.ClusterPool
+
+		if err := rows.Scan(&a.ID, &a.Name); err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("id: %d,name: %s\n", id, name)
+		fmt.Printf("id: %d,name: %s\n", a.ID, a.Name)
 	}
 	end := time.Now()
 	fmt.Println("query total time:", end.Sub(start).Seconds())
