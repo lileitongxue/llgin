@@ -18,7 +18,10 @@ func GetClusterPoolInfo(which int) (InfoClusterPool []structdb.ClusterPool) {
 	defer db.Close()
 
 	//start := time.Now()
-	rows, _ := db.Query("SELECT * FROM cluster_pool where id = ?", which)
+	rows, err := db.Query("SELECT * FROM cluster_pool where id = ?", which)
+	if err != nil {
+		fmt.Println(err)
+	}
 	defer rows.Close()
 
 	for rows.Next() {

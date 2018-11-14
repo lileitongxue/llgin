@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//Getapi 测试
+//Getapi
 func Getapi(router *gin.Engine) {
 
 	router.GET("/getClusterPoolInfo", func(c *gin.Context) {
