@@ -7,11 +7,11 @@ import (
 	"log"
 )
 
-var ResurtInfo = make([]structdb.ClusterPool, 0)
-var ResurtList = make([]structdb.ClusterPool, 0)
+var InfoClusterPool = make([]structdb.ClusterPool, 0)
+var ListClusterPool = make([]structdb.ClusterPool, 0)
 
 //GetClusterPoolInfo 获取一条数据的详细信息
-func GetClusterPoolInfo(which int) (ResurtInfo []structdb.ClusterPool) {
+func GetClusterPoolInfo(which int) (InfoClusterPool []structdb.ClusterPool) {
 
 	var a structdb.ClusterPool
 	db := mydb.InitDB()
@@ -35,7 +35,7 @@ func GetClusterPoolInfo(which int) (ResurtInfo []structdb.ClusterPool) {
 			a.ClusterToken,
 			a.ClusterInfo,
 			a.CreateTime)
-		ResurtInfo = append(ResurtInfo, a)
+		InfoClusterPool = append(InfoClusterPool, a)
 	}
 	//end := time.Now()
 	//fmt.Println("query total time:", end.Sub(start).Seconds())
@@ -43,7 +43,7 @@ func GetClusterPoolInfo(which int) (ResurtInfo []structdb.ClusterPool) {
 }
 
 //GetClusterPoolList 获取集群信息列表
-func GetClusterPoolList() (ResurtList []structdb.ClusterPool) {
+func GetClusterPoolList() (ListClusterPool []structdb.ClusterPool) {
 
 	var a structdb.ClusterPool
 	db := mydb.InitDB()
@@ -65,7 +65,7 @@ func GetClusterPoolList() (ResurtList []structdb.ClusterPool) {
 			a.ClusterToken,
 			a.ClusterInfo,
 			a.CreateTime)
-		ResurtList = append(ResurtList, a)
+		ListClusterPool = append(ListClusterPool, a)
 	}
 	return
 }

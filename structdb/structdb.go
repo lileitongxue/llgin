@@ -78,22 +78,22 @@ type NamespacesPool struct {
 }
 
 type PodPool struct {
-	ID            int
-	Name          string
-	Namespace     string
-	Version       string
-	HostIP        string
-	PodIP         string
-	ImageName     string
-	Ports         string
-	Resource      string
-	Environment   string
-	MountsVolumes string
-	StartTime     time.Time
-	PodStatus     int
-	RestartCount  int
-	ClusterID     int
-	CreateTime    time.Time
+	ID            int       `json:"id" form:"id"`
+	Name          string    `json:"name" form:"name"`
+	Namespace     string    `json:"namespace" form:"namespace"`
+	Version       string    `json:"version" form:"version"`
+	HostIP        string    `json:"host_ip" form:"host_ip"`
+	PodIP         string    `json:"pod_ip" form:"pod_ip"`
+	ImageName     string    `json:"image_name" form:"image_name"`
+	Ports         string    `json:"posts" form:"ports"`
+	Resource      string    `json:"resource" form:"resource"`
+	Environment   string    `json:"environment" form:"environment"`
+	MountsVolumes string    `json:"mounts_volumes" form:"mounts_volumes"`
+	StartTime     time.Time `json:"start_time" form:"start_time"`
+	PodStatus     int       `json:"pod_status" form:"pod_status"`
+	RestartCount  int       `json:"restart_count" form:"restart_count"`
+	ClusterID     int       `json:"cluster_id" form:"cluster_id"`
+	CreateTime    time.Time `json:"create_time" form:"create_time"`
 }
 
 type PoolController struct {

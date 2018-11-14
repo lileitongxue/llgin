@@ -25,15 +25,18 @@ func Getapi(router *gin.Engine) {
 		})
 	})
 
-	router.GET("/user/:name", func(c *gin.Context) {
-		name := c.Param("name")
-		c.String(http.StatusOK, "hello %s", name)
+	router.GET("/getPodPoolInfo", func(c *gin.Context) {
+		which := c.DefaultQuery("which", "1")
+		whichInt, _ := strconv.Atoi(which)
+		c.JSON(http.StatusOK, gin.H{
+			"cluster_pool": myquery.GetPodPoolInfo(whichInt),
+		})
 	})
 
-	router.GET("/welcome", func(c *gin.Context) {
-		firstname := c.DefaultQuery("firstname", "Guest")
-		lastname := c.Query("lastname")
-		c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
+	router.GET("/getPodPoolList", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"cluster_pool": myquery.GetPodPoolList(),
+		})
 	})
 
 }
