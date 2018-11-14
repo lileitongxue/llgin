@@ -11,15 +11,14 @@ var ResurtInfo = make([]structdb.ClusterPool, 0)
 var ResurtList = make([]structdb.ClusterPool, 0)
 
 //GetClusterPoolInfo 获取一条数据的详细信息
-func GetClusterPoolInfo() (ResurtInfo []structdb.ClusterPool) {
+func GetClusterPoolInfo(which int) (ResurtInfo []structdb.ClusterPool) {
 
 	var a structdb.ClusterPool
 	db := sql.InitDB()
 	defer db.Close()
 
 	//start := time.Now()
-
-	rows, _ := db.Query("SELECT * FROM cluster_pool")
+	rows, _ := db.Query("SELECT * FROM cluster_pool where id = ?", which)
 	defer rows.Close()
 
 	for rows.Next() {

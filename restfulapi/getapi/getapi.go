@@ -3,6 +3,7 @@ package getapi
 import (
 	sql "llgin/database/query"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,13 +11,15 @@ import (
 //Getapi 测试
 func Getapi(router *gin.Engine) {
 
-	router.GET("/", func(c *gin.Context) {
+	router.GET("/getClusterPoolInfo", func(c *gin.Context) {
+		which := c.DefaultQuery("which", "1")
+		whichInt, _ := strconv.Atoi(which)
 		c.JSON(http.StatusOK, gin.H{
-			"cluster_pool": sql.GetClusterPoolInfo(),
+			"cluster_pool": sql.GetClusterPoolInfo(whichInt),
 		})
 	})
 
-	router.GET("/lilei/", func(c *gin.Context) {
+	router.GET("/getClusterPoolList", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"cluster_pool": sql.GetClusterPoolList(),
 		})
