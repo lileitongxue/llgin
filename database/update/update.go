@@ -1,4 +1,4 @@
-package database
+package update
 
 import (
 	"database/sql"

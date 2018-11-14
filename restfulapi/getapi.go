@@ -1,7 +1,7 @@
-package getapi
+package restfulapi
 
 import (
-	sql "llgin/database/query"
+	myquery "llgin/database/query"
 	"net/http"
 	"strconv"
 
@@ -15,13 +15,13 @@ func Getapi(router *gin.Engine) {
 		which := c.DefaultQuery("which", "1")
 		whichInt, _ := strconv.Atoi(which)
 		c.JSON(http.StatusOK, gin.H{
-			"cluster_pool": sql.GetClusterPoolInfo(whichInt),
+			"cluster_pool": myquery.GetClusterPoolInfo(whichInt),
 		})
 	})
 
 	router.GET("/getClusterPoolList", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"cluster_pool": sql.GetClusterPoolList(),
+			"cluster_pool": myquery.GetClusterPoolList(),
 		})
 	})
 

@@ -1,4 +1,4 @@
-package postapi
+package restfulapi
 
 import (
 	"net/http"
@@ -24,4 +24,3 @@ func Postapi(router *gin.Engine) {
 	})
 
 }
-

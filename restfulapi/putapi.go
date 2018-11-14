@@ -1,4 +1,4 @@
-package putapi
+package restfulapi
 
 import (
 	"fmt"

@@ -1,8 +1,8 @@
-package database
+package query
 
 import (
 	"fmt"
-	sql "llgin/database/init"
+	mydb "llgin/database/init"
 	"llgin/structdb"
 	"log"
 )
@@ -14,7 +14,7 @@ var ResurtList = make([]structdb.ClusterPool, 0)
 func GetClusterPoolInfo(which int) (ResurtInfo []structdb.ClusterPool) {
 
 	var a structdb.ClusterPool
-	db := sql.InitDB()
+	db := mydb.InitDB()
 	defer db.Close()
 
 	//start := time.Now()
@@ -46,7 +46,7 @@ func GetClusterPoolInfo(which int) (ResurtInfo []structdb.ClusterPool) {
 func GetClusterPoolList() (ResurtList []structdb.ClusterPool) {
 
 	var a structdb.ClusterPool
-	db := sql.InitDB()
+	db := mydb.InitDB()
 	defer db.Close()
 	rows, _ := db.Query("SELECT * FROM cluster_pool")
 	defer rows.Close()
