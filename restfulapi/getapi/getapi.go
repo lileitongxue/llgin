@@ -1,7 +1,7 @@
 package getapi
 
 import (
-	sql "llgin/database"
+	sql "llgin/database/query"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

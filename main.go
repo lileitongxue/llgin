@@ -1,9 +1,9 @@
 package main
 
 import (
-	get "llgin/getapi"
-	post "llgin/postapi"
-	put "llgin/putapi"
+	get "llgin/restfulapi/getapi"
+	post "llgin/restfulapi/postapi"
+	put "llgin/restfulapi/putapi"
 
 	"github.com/gin-gonic/gin"
 )

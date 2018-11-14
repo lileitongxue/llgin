@@ -2,6 +2,7 @@ package database
 
 import (
 	"fmt"
+	sql "llgin/database/init"
 	"llgin/structdb"
 	"log"
 )
@@ -13,7 +14,7 @@ var ResurtList = make([]structdb.ClusterPool, 0)
 func GetClusterPoolInfo() (ResurtInfo []structdb.ClusterPool) {
 
 	var a structdb.ClusterPool
-	db := InitDB()
+	db := sql.InitDB()
 	defer db.Close()
 
 	//start := time.Now()
@@ -44,12 +45,10 @@ func GetClusterPoolInfo() (ResurtInfo []structdb.ClusterPool) {
 
 //GetClusterPoolList 获取集群信息列表
 func GetClusterPoolList() (ResurtList []structdb.ClusterPool) {
+
 	var a structdb.ClusterPool
-	db := InitDB()
+	db := sql.InitDB()
 	defer db.Close()
-
-	//start := time.Now()
-
 	rows, _ := db.Query("SELECT * FROM cluster_pool")
 	defer rows.Close()
 
@@ -69,7 +68,5 @@ func GetClusterPoolList() (ResurtList []structdb.ClusterPool) {
 			a.CreateTime)
 		ResurtList = append(ResurtList, a)
 	}
-	//end := time.Now()
-	//fmt.Println("query total time:", end.Sub(start).Seconds())
 	return
 }
