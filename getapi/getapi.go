@@ -11,12 +11,15 @@ import (
 func Getapi(router *gin.Engine) {
 
 	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello World")
-		sql.Query1()
+		c.JSON(http.StatusOK, gin.H{
+			"cluster_pool": sql.GetClusterPoolInfo(),
+		})
 	})
 
 	router.GET("/lilei/", func(c *gin.Context) {
-		c.String(http.StatusOK, "this is a shuaib")
+		c.JSON(http.StatusOK, gin.H{
+			"cluster_pool": sql.GetClusterPoolList(),
+		})
 	})
 
 	router.GET("/user/:name", func(c *gin.Context) {

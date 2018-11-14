@@ -5,14 +5,14 @@ import (
 )
 
 type ClusterPool struct {
-	ID           int
-	Name         string
-	Namespace    string
-	ClusterIP    string
-	ClusterPort  int
-	ClusterToken string
-	ClusterInfo  string
-	CreateTime   time.Time
+	ID           int       `json:"id" form:"id"`
+	Name         string    `json:"name" form:"name"`
+	Namespace    string    `json:"namespace" form:"namespace"`
+	ClusterIP    string    `json:"cluster_ip" form:"cluster_ip"`
+	ClusterPort  int       `json:"cluster_port" form:"cluster_port"`
+	ClusterToken string    `json:"cluster_token" form:"cluster_token"`
+	ClusterInfo  string    `json:"cluster_info" form:"cluster_info"`
+	CreateTime   time.Time `json:"create_time" form:"create_time"`
 }
 
 type ConfigmapsPool struct {
