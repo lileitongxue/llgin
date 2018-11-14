@@ -51,7 +51,10 @@ func GetClusterPoolList() (ListClusterPool []structdb.ClusterPool) {
 	var a structdb.ClusterPool
 	db := mydb.InitDB()
 	defer db.Close()
-	rows, _ := db.Query("SELECT * FROM cluster_pool")
+	rows, err := db.Query("SELECT * FROM cluster_pool")
+	if err != nil {
+		fmt.Println("err")
+	}
 	defer rows.Close()
 
 	for rows.Next() {
