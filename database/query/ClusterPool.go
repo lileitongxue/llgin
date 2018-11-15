@@ -18,26 +18,34 @@ func GetClusterPoolInfo(which int) (InfoClusterPool []structdb.ClusterPool) {
 	defer db.Close()
 
 	//start := time.Now()
-	rows, err := db.Query("SELECT * FROM cluster_pool where id = ?", which)
+	rows, err := db.Query("SELECT id,name FROM cluster_pool where id = ?", which)
 	if err != nil {
 		fmt.Println(err)
 	}
 	defer rows.Close()
 
 	for rows.Next() {
-		if err := rows.Scan(&a.ID, &a.Name, &a.Namespace, &a.ClusterIP, &a.ClusterPort, &a.ClusterToken, &a.ClusterInfo, &a.CreateTime); err != nil {
+		if err := rows.Scan(
+			&a.ID,
+			&a.Name,
+			&a.Namespace,
+			// &a.ClusterIP,
+			// &a.ClusterPort,
+			// &a.ClusterToken,
+			// &a.ClusterInfo,
+			&a.CreateTime); err != nil {
 			log.Fatal(err)
 		}
 
-		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n clusterip: %s\n clusterport: %d\n clustertoken: %s\n clusterinfo: %s\n createtime: %s\n",
-			a.ID,
-			a.Name,
-			a.Namespace,
-			a.ClusterIP,
-			a.ClusterPort,
-			a.ClusterToken,
-			a.ClusterInfo,
-			a.CreateTime)
+		// fmt.Printf(" id: %d\n name: %s\n namespace: %s\n clusterip: %s\n clusterport: %d\n clustertoken: %s\n clusterinfo: %s\n createtime: %s\n",
+		// 	a.ID,
+		// 	a.Name,
+		// 	a.Namespace,
+		// 	a.ClusterIP,
+		// 	a.ClusterPort,
+		// 	a.ClusterToken,
+		// 	a.ClusterInfo,
+		// 	a.CreateTime)
 		InfoClusterPool = append(InfoClusterPool, a)
 	}
 	//end := time.Now()
