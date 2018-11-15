@@ -17,16 +17,16 @@ type ClusterPool struct {
 }
 
 type ConfigmapsPool struct {
-	ID            int
-	TmplName      string
-	Namespace     string
-	Labels        string
-	Data          string
-	URL           string
-	HostIPPorts   string
-	ConfigmapName string
-	ClusterID     int
-	CreateTime    time.Time
+	ID            int       `json:"id" form:"id"`
+	TmplName      string    `json:"tmpl_name" form:"tmpl_name"`
+	Namespace     string    `json:"namespace" form:"namespace"`
+	Labels        string    `json:"labels" form:"labels"`
+	Data          string    `json:"data" form:"data"`
+	URL           string    `json:"url" form:"url"`
+	HostIPPorts   string    `json:"hostip_ports" form:"hostip_ports"`
+	ConfigmapName string    `json:"configmap_name" form:"configmap_name"`
+	ClusterID     int       `json:"cluster_id" form:"cluster_id"`
+	CreateTime    time.Time `json:"create_time" form:"create_time"`
 }
 
 type DaemonetsPool struct {
@@ -41,16 +41,16 @@ type DaemonetsPool struct {
 }
 
 type DeploymentsPool struct {
-	ID         int
-	Name       string
-	Namespace  string
-	Labels     string
-	Version    string
-	Selector   string
-	Desired    int
-	Availabel  int
-	ClusterID  int
-	CreateTime time.Time
+	ID         int       `json:"id" form:"id"`
+	Name       string    `json:"name" form:"name"`
+	Namespace  string    `json:"namespace" form:"namespace"`
+	Labels     string    `json:"labels" form:"labels"`
+	Version    string    `json:"version" form:"version"`
+	Selector   string    `json:"selector" form:"selector"`
+	Desired    int       `json:"desired" form:"desired"`
+	Availabel  int       `json:"availabel" form:"availabels"`
+	ClusterID  int       `json:"cluster_id" form:"cluster_id"`
+	CreateTime time.Time `json:"create_time" form:"create_time"`
 }
 
 type EndpointsPool struct {
