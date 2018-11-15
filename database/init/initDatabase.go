@@ -36,7 +36,7 @@ func InitDB() (DB *sql.DB) {
 		fmt.Println("opon database fail")
 		return
 	}
-	fmt.Println("connnect database success")
+	//fmt.Println("connnect database success")
 	return
 
 }
