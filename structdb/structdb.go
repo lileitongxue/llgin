@@ -40,6 +40,19 @@ type DaemonetsPool struct {
 	CreateTime  time.Time
 }
 
+type DeploymentsPool struct {
+	ID         int
+	Name       string
+	Namespace  string
+	Labels     string
+	Version    string
+	Selector   string
+	Desired    int
+	Availabel  int
+	ClusterID  int
+	CreateTime time.Time
+}
+
 type EndpointsPool struct {
 	ID         int
 	Name       string
