@@ -31,13 +31,13 @@ func Getapi(router *gin.Engine) {
 		appname := c.Query("appname")
 		//whichInt, _ := strconv.Atoi(which)
 		c.JSON(http.StatusOK, gin.H{
-			"cluster_pool": myquery.GetPodPoolInfo(appname, ns),
+			"pod_pool": myquery.GetPodPoolInfo(appname, ns),
 		})
 	})
 	//api接口提供pod_pool的全量信息
 	// router.GET("/getPodPoolList", func(c *gin.Context) {
 	// 	c.JSON(http.StatusOK, gin.H{
-	// 		"cluster_pool": myquery.GetPodPoolList(),
+	// 		"pod_pool": myquery.GetPodPoolList(),
 	// 	})
 	// })
 	//api接口提供deployments_pool的信息,以id筛选
