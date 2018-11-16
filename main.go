@@ -1,17 +1,17 @@
 package main
 
 import (
-	restful "llgin/restfulapi"
+	rf "llgin/restfulapi"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 
-	router := gin.Default()
-	restful.Postapi(router)
-	restful.Getapi(router)
-	restful.Putapi(router)
+	r := gin.Default()
+	rf.Postapi(r)
+	rf.Getapi(r)
+	rf.Putapi(r)
 
-	router.Run(":8000")
+	r.Run(":8000")
 }
