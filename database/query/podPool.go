@@ -11,14 +11,14 @@ var InfoPodPool = make([]structdb.PodPool, 0)
 var ListPodPool = make([]structdb.PodPool, 0)
 
 //GetPodPoolInfo 获取一条数据的详细信息
-func GetPodPoolInfo(which int) (InfoPodPool []structdb.PodPool) {
+func GetPodPoolInfo(appname string, ns string) (InfoPodPool []structdb.PodPool) {
 
 	var a structdb.PodPool
 	db := mydb.InitDB()
 	defer db.Close()
 
 	//start := time.Now()
-	rows, _ := db.Query("SELECT * FROM pod_pool where id = ?", which)
+	rows, _ := db.Query("SELECT * FROM pod_pool where  name = ? and namespace = ?", appname, ns)
 	defer rows.Close()
 
 	for rows.Next() {

@@ -11,14 +11,14 @@ var InfoClusterPool = make([]structdb.ClusterPool, 0)
 var ListClusterPool = make([]structdb.ClusterPool, 0)
 
 //GetClusterPoolInfo 获取一条数据的详细信息
-func GetClusterPoolInfo(which int) (InfoClusterPool []structdb.ClusterPool) {
+func GetClusterPoolInfo(ns string, ip string) (InfoClusterPool []structdb.ClusterPool) {
 
 	var a structdb.ClusterPool
 	db := mydb.InitDB()
 	defer db.Close()
 
 	//start := time.Now()
-	rows, err := db.Query("SELECT * FROM cluster_pool where id = ?", which)
+	rows, err := db.Query("SELECT * FROM cluster_pool where namespace = ? and cluster_ip = ?", ns, ip)
 	if err != nil {
 		fmt.Println(err)
 	}

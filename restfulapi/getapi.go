@@ -12,10 +12,11 @@ import (
 func Getapi(router *gin.Engine) {
 	//api接口提供cluster_pool的信息，以id筛选
 	router.GET("/getClusterPoolInfo", func(c *gin.Context) {
-		which := c.DefaultQuery("which", "1")
-		whichInt, _ := strconv.Atoi(which)
+		ns := c.DefaultQuery("ns", "gaojihealth")
+		//whichInt, _ := strconv.Atoi(which)
+		ip := c.Query("ip")
 		c.JSON(http.StatusOK, gin.H{
-			"cluster_pool": myquery.GetClusterPoolInfo(whichInt),
+			"cluster_pool": myquery.GetClusterPoolInfo(ns, ip),
 		})
 	})
 	//api接口提供cluster_pool的全量信息
@@ -25,31 +26,34 @@ func Getapi(router *gin.Engine) {
 		})
 	})
 	//api接口提供pod_pool的信息,以id筛选
-	router.GET("/getPodPoolInfo", func(c *gin.Context) {
-		which := c.DefaultQuery("which", "1")
-		whichInt, _ := strconv.Atoi(which)
+	router.GET("/getPodInfo", func(c *gin.Context) {
+		ns := c.DefaultQuery("ns", "gaojihealth")
+		appname := c.Query("appname")
+		//whichInt, _ := strconv.Atoi(which)
 		c.JSON(http.StatusOK, gin.H{
-			"cluster_pool": myquery.GetPodPoolInfo(whichInt),
+			"cluster_pool": myquery.GetPodPoolInfo(appname, ns),
 		})
 	})
 	//api接口提供pod_pool的全量信息
-	router.GET("/getPodPoolList", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"cluster_pool": myquery.GetPodPoolList(),
-		})
-	})
+	// router.GET("/getPodPoolList", func(c *gin.Context) {
+	// 	c.JSON(http.StatusOK, gin.H{
+	// 		"cluster_pool": myquery.GetPodPoolList(),
+	// 	})
+	// })
 	//api接口提供deployments_pool的信息,以id筛选
-	router.GET("/getDeployPoolInfo", func(c *gin.Context) {
-		which := c.DefaultQuery("which", "1")
-		whichInt, _ := strconv.Atoi(which)
+	router.GET("/getDeploymentInfo", func(c *gin.Context) {
+		ns := c.DefaultQuery("ns", "gaojihealth")
+		//whichInt, _ := strconv.Atoi(which)
+		appname := c.Query("appname")
 		c.JSON(http.StatusOK, gin.H{
-			"deployments_pool": myquery.GetDeployPoolInfo(whichInt),
+			"deployments_pool": myquery.GetDeployPoolInfo(appname, ns),
 		})
 	})
 	//api接口提供deployments_pool的全量信息
-	router.GET("/getDeployPoolList", func(c *gin.Context) {
+	router.GET("/getDeploymentList", func(c *gin.Context) {
+		ns := c.Query("gaojihealth")
 		c.JSON(http.StatusOK, gin.H{
-			"deployments_pool": myquery.GetDeployPoolList(),
+			"deployments_pool": myquery.GetDeployPoolList(ns),
 		})
 	})
 	//api接口提供configmaps_pool的信息,以id筛选

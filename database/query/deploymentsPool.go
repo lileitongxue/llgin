@@ -11,14 +11,14 @@ var InfoDeployPool = make([]structdb.DeploymentsPool, 0)
 var ListDeployPool = make([]structdb.DeploymentsPool, 0)
 
 //GetClusterPoolInfo 获取一条数据的详细信息
-func GetDeployPoolInfo(which int) (InfoDeployPool []structdb.DeploymentsPool) {
+func GetDeployPoolInfo(appname string, ns string) (InfoDeployPool []structdb.DeploymentsPool) {
 
 	var a structdb.DeploymentsPool
 	db := mydb.InitDB()
 	defer db.Close()
 
 	//start := time.Now()
-	rows, err := db.Query("SELECT * FROM deployments_pool where id = ?", which)
+	rows, err := db.Query("SELECT * FROM deployments_pool where name = ? and namespace = ?", appname, ns)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -56,12 +56,12 @@ func GetDeployPoolInfo(which int) (InfoDeployPool []structdb.DeploymentsPool) {
 }
 
 //GetClusterPoolList 获取集群信息列表
-func GetDeployPoolList() (ListDeployPool []structdb.DeploymentsPool) {
+func GetDeployPoolList(ns string) (ListDeployPool []structdb.DeploymentsPool) {
 
 	var a structdb.DeploymentsPool
 	db := mydb.InitDB()
 	defer db.Close()
-	rows, err := db.Query("SELECT * FROM deployments_pool")
+	rows, err := db.Query("SELECT name FROM deployments_pool where namespace = ?", ns)
 	if err != nil {
 		fmt.Println("err")
 	}
@@ -69,29 +69,29 @@ func GetDeployPoolList() (ListDeployPool []structdb.DeploymentsPool) {
 
 	for rows.Next() {
 		if err := rows.Scan(
-			&a.ID,
-			&a.ID,
+			// &a.ID,
 			&a.Name,
-			&a.Namespace,
-			&a.Labels,
-			&a.Version,
-			&a.Selector,
-			&a.Desired,
-			&a.Availabel,
-			&a.CreateTime); err != nil {
+			// &a.Namespace,
+			// &a.Labels,
+			// &a.Version,
+			// &a.Selector,
+			// &a.Desired,
+			// &a.Availabel,
+			// &a.CreateTime
+		); err != nil {
 			log.Fatal(err)
 		}
 
-		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n labels: %s\n version: %d\n selector: %d\n desired: %d\n availabels: %d\n create_time: %s\n",
-			&a.ID,
-			&a.Name,
-			&a.Namespace,
-			&a.Labels,
-			&a.Version,
-			&a.Selector,
-			&a.Desired,
-			&a.Availabel,
-			a.CreateTime)
+		// fmt.Printf(" id: %d\n name: %s\n namespace: %s\n labels: %s\n version: %d\n selector: %d\n desired: %d\n availabels: %d\n create_time: %s\n",
+		// 	&a.ID,
+		// 	&a.Name,
+		// 	&a.Namespace,
+		// 	&a.Labels,
+		// 	&a.Version,
+		// 	&a.Selector,
+		// 	&a.Desired,
+		// 	&a.Availabel,
+		// 	a.CreateTime)
 		ListDeployPool = append(ListDeployPool, a)
 	}
 	return
