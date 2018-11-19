@@ -3,17 +3,17 @@ package query
 import (
 	"fmt"
 	mydb "llgin/database/init"
-	"llgin/structdb"
+	"llgin/structerr"
 	"log"
 )
 
-var InfoConfigmapsPool = make([]structdb.ConfigmapsPool, 0)
-var ListConfigmapsPool = make([]structdb.ConfigmapsPool, 0)
+var InfoConfigmapsPool = make([]structerr.ConfigmapsPool, 0)
+var ListConfigmapsPool = make([]structerr.ConfigmapsPool, 0)
 
 //GetConfigmapsPoolInfo 获取一条数据的详细信息
-func GetConfigmapsPoolInfo(which int) (InfoConfigmapsPool []structdb.ConfigmapsPool) {
+func GetConfigmapsPoolInfo(which int) (InfoConfigmapsPool []structerr.ConfigmapsPool) {
 
-	var a structdb.ConfigmapsPool
+	var a structerr.ConfigmapsPool
 	db := mydb.InitDB()
 	defer db.Close()
 
@@ -58,9 +58,9 @@ func GetConfigmapsPoolInfo(which int) (InfoConfigmapsPool []structdb.ConfigmapsP
 }
 
 //GetConfigmapsPoolList 获取集群信息列表
-func GetConfigmapsPoolList() (ListConfigmapsPool []structdb.ConfigmapsPool) {
+func GetConfigmapsPoolList() (ListConfigmapsPool []structerr.ConfigmapsPool) {
 
-	var a structdb.ConfigmapsPool
+	var a structerr.ConfigmapsPool
 	db := mydb.InitDB()
 	defer db.Close()
 	rows, err := db.Query("SELECT * FROM configmaps_pool")

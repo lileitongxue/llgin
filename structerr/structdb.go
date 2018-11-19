@@ -1,4 +1,4 @@
-package structdb
+package structerr
 
 import (
 	"database/sql"

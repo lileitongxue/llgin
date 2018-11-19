@@ -3,17 +3,17 @@ package query
 import (
 	"fmt"
 	mydb "llgin/database/init"
-	"llgin/structdb"
+	"llgin/structerr"
 	"log"
 )
 
-var InfoClusterPool = make([]structdb.ClusterPool, 0)
-var ListClusterPool = make([]structdb.ClusterPool, 0)
+var InfoClusterPool = make([]structerr.ClusterPool, 0)
+var ListClusterPool = make([]structerr.ClusterPool, 0)
 
 //GetClusterPoolInfo 获取一条数据的详细信息
-func GetClusterPoolInfo(ns string, ip string) (InfoClusterPool []structdb.ClusterPool) {
+func GetClusterPoolInfo(ns string, ip string) (InfoClusterPool []structerr.ClusterPool) {
 
-	var a structdb.ClusterPool
+	var a structerr.ClusterPool
 	db := mydb.InitDB()
 	defer db.Close()
 
@@ -54,9 +54,9 @@ func GetClusterPoolInfo(ns string, ip string) (InfoClusterPool []structdb.Cluste
 }
 
 //GetClusterPoolList 获取集群信息列表
-func GetClusterPoolList() (ListClusterPool []structdb.ClusterPool) {
+func GetClusterPoolList() (ListClusterPool []structerr.ClusterPool) {
 
-	var a structdb.ClusterPool
+	var a structerr.ClusterPool
 	db := mydb.InitDB()
 	defer db.Close()
 	rows, err := db.Query("SELECT * FROM cluster_pool")

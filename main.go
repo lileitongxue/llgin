@@ -9,9 +9,10 @@ import (
 func main() {
 
 	r := gin.Default()
-	rf.Postapi(r)
-	rf.Getapi(r)
-	rf.Putapi(r)
-
+	//r.GET("/getClusterPoolInfo", rf.GetClusterPoolInfo)
+	r.GET("/getPodInfo", rf.GetPodInfo)
+	r.GET("/getPodPoolList", rf.GetPodPoolList)
+	//r.GET("/getDeploymentInfo", rf.GetDeploymentInfo)
+	r.GET("/getDeploymentList", rf.GetDeploymentList)
 	r.Run(":8000")
 }

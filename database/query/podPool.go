@@ -3,17 +3,17 @@ package query
 import (
 	"fmt"
 	mydb "llgin/database/init"
-	"llgin/structdb"
+	"llgin/structerr"
 	"log"
 )
 
-var InfoPodPool = make([]structdb.PodPool, 0)
-var ListPodPool = make([]structdb.PodPool, 0)
+var InfoPodPool = make([]structerr.PodPool, 0)
+var ListPodPool = make([]structerr.PodPool, 0)
 
 //GetPodPoolInfo 获取一条数据的详细信息
-func GetPodPoolInfo(appname string, ns string) (InfoPodPool []structdb.PodPool) {
+func GetPodPoolInfo(appname string, ns string) (InfoPodPool []structerr.PodPool) {
 
-	var a structdb.PodPool
+	var a structerr.PodPool
 	db := mydb.InitDB()
 	defer db.Close()
 
@@ -67,12 +67,12 @@ func GetPodPoolInfo(appname string, ns string) (InfoPodPool []structdb.PodPool) 
 }
 
 //GetPodPoolList 获取集群信息列表
-func GetPodPoolList() (ListPodPool []structdb.PodPool) {
+func GetPodPoolList() (ListPodPool []structerr.PodPool) {
 
-	var a structdb.PodPool
+	var a structerr.PodPool
 	db := mydb.InitDB()
 	defer db.Close()
-	rows, _ := db.Query("SELECT * FROM cluster_pool")
+	rows, _ := db.Query("SELECT * FROM pod_pool")
 	defer rows.Close()
 
 	for rows.Next() {

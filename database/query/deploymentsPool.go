@@ -3,17 +3,17 @@ package query
 import (
 	"fmt"
 	mydb "llgin/database/init"
-	"llgin/structdb"
+	"llgin/structerr"
 	"log"
 )
 
-var InfoDeployPool = make([]structdb.DeploymentsPool, 0)
-var ListDeployPool = make([]structdb.DeploymentsPool, 0)
+var InfoDeployPool = make([]structerr.DeploymentsPool, 0)
+var ListDeployPool = make([]structerr.DeploymentsPool, 0)
 
 //GetClusterPoolInfo 获取一条数据的详细信息
-func GetDeployPoolInfo(appname string, ns string) (InfoDeployPool []structdb.DeploymentsPool) {
+func GetDeployPoolInfo(appname string, ns string) (InfoDeployPool []structerr.DeploymentsPool) {
 
-	var a structdb.DeploymentsPool
+	var a structerr.DeploymentsPool
 	db := mydb.InitDB()
 	defer db.Close()
 
@@ -56,9 +56,9 @@ func GetDeployPoolInfo(appname string, ns string) (InfoDeployPool []structdb.Dep
 }
 
 //GetClusterPoolList 获取集群信息列表
-func GetDeployPoolList(ns string) (ListDeployPool []structdb.DeploymentsPool) {
+func GetDeployPoolList(ns string) (ListDeployPool []structerr.DeploymentsPool) {
 
-	var a structdb.DeploymentsPool
+	var a structerr.DeploymentsPool
 	db := mydb.InitDB()
 	defer db.Close()
 	rows, err := db.Query("SELECT name FROM deployments_pool where namespace = ?", ns)
