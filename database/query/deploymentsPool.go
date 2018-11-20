@@ -103,33 +103,4 @@ func GetDeployPoolList(ns string) []string {
 	}
 	//fmt.Println("scanArgs:", scanArgs)
 	return value
-	// for rows.Next() {
-	// 	if err := rows.Scan(
-	// 		scanArgs...,
-	// 	// &a.ID,
-	// 	//&a.Name,
-	// 	// &a.Namespace,
-	// 	// &a.Labels,
-	// 	// &a.Version,
-	// 	// &a.Selector,
-	// 	// &a.Desired,
-	// 	// &a.Availabel,
-	// 	// &a.CreateTime
-	// 	); err != nil {
-	// 		log.Fatal(err)
-	// 	}
-
-	// fmt.Printf(" id: %d\n name: %s\n namespace: %s\n labels: %s\n version: %d\n selector: %d\n desired: %d\n availabels: %d\n create_time: %s\n",
-	// 	&a.ID,
-	// 	&a.Name,
-	// 	&a.Namespace,
-	// 	&a.Labels,
-	// 	&a.Version,
-	// 	&a.Selector,
-	// 	&a.Desired,
-	// 	&a.Availabel,
-	// 	a.CreateTime)
-	//ListDeployPool = append(ListDeployPool, a)
-	//}
-	//return
 }

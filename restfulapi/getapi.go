@@ -43,7 +43,7 @@ func GetPodInfo(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"pod_pool": myquery.GetPodPoolInfo(Na.AppName, Na.Ns),
+		"pod_info": myquery.GetPodPoolInfo(Na.AppName, Na.Ns),
 	})
 }
 
@@ -66,7 +66,7 @@ func GetDeploymentInfo(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"deployments_pool": myquery.GetDeployPoolInfo(Na.AppName, Na.Ns),
+		"deployments_info": myquery.GetDeployPoolInfo(Na.AppName, Na.Ns),
 	})
 }
 
@@ -85,7 +85,7 @@ func GetDeploymentList(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"deployments_pool": myquery.GetDeployPoolList(ns.Ns),
+		"deployments_list": myquery.GetDeployPoolList(ns.Ns),
 	})
 }
 
