@@ -13,14 +13,14 @@ var InfoDeployPool = make([]structerr.DeploymentsPool, 0)
 //var ListDeployPool = make([]structerr.DeploymentsPool, 0)
 
 //GetClusterPoolInfo 获取一条数据的详细信息
-func GetDeployPoolInfo(appname string, ns string) (InfoDeployPool []structerr.DeploymentsPool) {
+func GetDeployPoolInfo(ns string) (InfoDeployPool []structerr.DeploymentsPool) {
 
 	var a structerr.DeploymentsPool
 	db := mydb.InitDB()
 	defer db.Close()
 
 	//start := time.Now()
-	rows, err := db.Query("SELECT * FROM deployments_pool where name = ? and namespace = ?", appname, ns)
+	rows, err := db.Query("SELECT name,labels,version,selector,desired,available,create_time FROM deployments_pool where namespace = ? ", ns)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -28,29 +28,31 @@ func GetDeployPoolInfo(appname string, ns string) (InfoDeployPool []structerr.De
 
 	for rows.Next() {
 		if err := rows.Scan(
-			&a.ID,
+			//&a.ID,
+			//&a.DeployID,
 			&a.Name,
-			&a.Namespace,
+			//&a.Namespace,
 			&a.Labels,
 			&a.Version,
 			&a.Selector,
 			&a.Desired,
 			&a.Availabel,
-			&a.ClusterID,
+			//&a.ClusterID,
 			&a.CreateTime); err != nil {
 			log.Fatal(err)
 		}
 
-		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n labels: %s\n version: %s\n selector: %s\n desired: %d\n availabels: %d\n cluster_id: %d\n create_time: %s\n",
-			a.ID,
+		fmt.Printf(" name: %s\n labels: %s\n version: %s\n selector: %s\n desired: %d\n availabels: %d\n create_time: %s\n",
+			//a.ID,
+			//a.DeployID,
 			a.Name,
-			a.Namespace,
+			//a.Namespace,
 			a.Labels,
 			a.Version,
 			a.Selector,
 			a.Desired,
 			a.Availabel,
-			a.ClusterID,
+			//a.ClusterID,
 			a.CreateTime)
 		InfoDeployPool = append(InfoDeployPool, a)
 	}

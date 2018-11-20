@@ -18,14 +18,14 @@ func GetPodPoolInfo(appname string, ns string) (InfoPodPool []structerr.PodPool)
 	defer db.Close()
 
 	//start := time.Now()
-	rows, _ := db.Query("SELECT * FROM pod_pool where  name = ? and namespace = ?", appname, ns)
+	rows, _ := db.Query("SELECT name,version,host_ip,pod_ip,image_name,ports,resource,environment,mounts_volumes,start_time,pod_status,restart_count,create_time FROM pod_pool where deploy_id = (select deploy_id from deployments_pool where name = ? ) and namespace = ?", appname, ns)
 	defer rows.Close()
 
 	for rows.Next() {
 		if err := rows.Scan(
-			&a.ID,
+			//&a.ID,
 			&a.Name,
-			&a.Namespace,
+			//&a.Namespace,
 			&a.Version,
 			&a.HostIP,
 			&a.PodIP,
@@ -37,15 +37,16 @@ func GetPodPoolInfo(appname string, ns string) (InfoPodPool []structerr.PodPool)
 			&a.StartTime,
 			&a.PodStatus,
 			&a.RestartCount,
-			&a.ClusterID,
+			//&a.DeployID,
+			//&a.ClusterID,
 			&a.CreateTime); err != nil {
 			log.Fatal(err)
 		}
 
-		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n version: %s\n hostIP: %s\n podIP: %s\n imagename: %s\n ports: %s\n resource: %s\n environment: %s\n mountsVolumes: %s\n startTime: %s\n podStatus: %d\n restartCount %d\n clusterID: %d\n createTime: %s\n",
-			a.ID,
+		fmt.Printf(" name: %s\n version: %s\n hostIP: %s\n podIP: %s\n imagename: %s\n ports: %s\n resource: %s\n environment: %s\n mountsVolumes: %s\n startTime: %s\n podStatus: %d\n restartCount %d\n createTime: %s\n",
+			//a.ID,
 			a.Name,
-			a.Namespace,
+			//a.Namespace,
 			a.Version,
 			a.HostIP,
 			a.PodIP,
@@ -57,7 +58,8 @@ func GetPodPoolInfo(appname string, ns string) (InfoPodPool []structerr.PodPool)
 			a.StartTime,
 			a.PodStatus,
 			a.RestartCount,
-			a.ClusterID,
+			//a.DeployID,
+			//a.ClusterID,
 			a.CreateTime)
 		InfoPodPool = append(InfoPodPool, a)
 	}
@@ -77,9 +79,9 @@ func GetPodPoolList() (ListPodPool []structerr.PodPool) {
 
 	for rows.Next() {
 		if err := rows.Scan(
-			&a.ID,
+			//&a.ID,
 			&a.Name,
-			&a.Namespace,
+			//&a.Namespace,
 			&a.Version,
 			&a.HostIP,
 			&a.PodIP,
@@ -91,15 +93,15 @@ func GetPodPoolList() (ListPodPool []structerr.PodPool) {
 			&a.StartTime,
 			&a.PodStatus,
 			&a.RestartCount,
-			&a.ClusterID,
+			//&a.ClusterID,
 			&a.CreateTime); err != nil {
 			log.Fatal(err)
 		}
 
 		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n version: %s\n hostIP: %s\n podIP: %s\n imagename: %s\n ports: %s\n resource: %s\n environment: %s\n mountsVolumes: %s\n startTime: %s\n podStatus: %d\n restartCount %d\n clusterID: %d\n createTime: %s\n",
-			a.ID,
+			//a.ID,
 			a.Name,
-			a.Namespace,
+			//a.Namespace,
 			a.Version,
 			a.HostIP,
 			a.PodIP,
@@ -111,7 +113,7 @@ func GetPodPoolList() (ListPodPool []structerr.PodPool) {
 			a.StartTime,
 			a.PodStatus,
 			a.RestartCount,
-			a.ClusterID,
+			//a.ClusterID,
 			a.CreateTime)
 		ListPodPool = append(ListPodPool, a)
 	}

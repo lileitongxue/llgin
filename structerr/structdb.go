@@ -41,15 +41,16 @@ type DaemonetsPool struct {
 }
 
 type DeploymentsPool struct {
-	ID         int       `json:"id" form:"id"`
-	Name       string    `json:"name" form:"name"`
-	Namespace  string    `json:"namespace" form:"namespace"`
-	Labels     string    `json:"labels" form:"labels"`
-	Version    string    `json:"version" form:"version"`
-	Selector   string    `json:"selector" form:"selector"`
-	Desired    int       `json:"desired" form:"desired"`
-	Availabel  int       `json:"availabel" form:"availabels"`
-	ClusterID  int       `json:"cluster_id" form:"cluster_id"`
+	//ID         int       `json:"id" form:"id"`
+	//DeployID   int       `json:"deploy_id" form:"deploy_id"`
+	Name string `json:"name" form:"name"`
+	//Namespace  string    `json:"namespace" form:"namespace"`
+	Labels    string `json:"labels" form:"labels"`
+	Version   string `json:"version" form:"version"`
+	Selector  string `json:"selector" form:"selector"`
+	Desired   int    `json:"desired" form:"desired"`
+	Availabel int    `json:"availabel" form:"availabels"`
+	//ClusterID  int       `json:"cluster_id" form:"cluster_id"`
 	CreateTime time.Time `json:"create_time" form:"create_time"`
 }
 
@@ -92,9 +93,9 @@ type NamespacesPool struct {
 }
 
 type PodPool struct {
-	ID            int       `json:"id" form:"id"`
-	Name          string    `json:"name" form:"name"`
-	Namespace     string    `json:"namespace" form:"namespace"`
+	//ID            int       `json:"id" form:"id"`
+	Name string `json:"name" form:"name"`
+	//Namespace     string    `json:"namespace" form:"namespace"`
 	Version       string    `json:"version" form:"version"`
 	HostIP        string    `json:"host_ip" form:"host_ip"`
 	PodIP         string    `json:"pod_ip" form:"pod_ip"`
@@ -106,8 +107,9 @@ type PodPool struct {
 	StartTime     time.Time `json:"start_time" form:"start_time"`
 	PodStatus     int       `json:"pod_status" form:"pod_status"`
 	RestartCount  int       `json:"restart_count" form:"restart_count"`
-	ClusterID     int       `json:"cluster_id" form:"cluster_id"`
-	CreateTime    time.Time `json:"create_time" form:"create_time"`
+	//DeployID      int       `json:"deploy_id" form:"deploy_id"`
+	//ClusterID     int       `json:"cluster_id" form:"cluster_id"`
+	CreateTime time.Time `json:"create_time" form:"create_time"`
 }
 
 type PoolController struct {

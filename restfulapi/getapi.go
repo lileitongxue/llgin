@@ -20,10 +20,10 @@ func GetClusterPoolInfo(c *gin.Context) {
 }
 
 //GetClusterPoolList 接口提供cluster_pool的全量信息
-func GetClusterPoolList(c *gin.Context) {
+func GetAllNodes(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
-		"cluster_pool": myquery.GetClusterPoolList(),
+		"node_list": myquery.GetAllNodes(),
 	})
 }
 
@@ -59,15 +59,15 @@ func GetPodPoolList(c *gin.Context) {
 //GetDeploymentInfo api接口提供deployments_pool的信息,以id筛选
 func GetDeploymentInfo(c *gin.Context) {
 
-	var Na NsAppname
-	if bindErr := c.Bind(&Na); bindErr != nil {
+	var Ns Ns
+	if bindErr := c.Bind(&Ns); bindErr != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": sq.ParamBindErr{Err: bindErr.Error()}.Error(),
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"deployments_info": myquery.GetDeployPoolInfo(Na.AppName, Na.Ns),
+		"deployments_info": myquery.GetDeployPoolInfo(Ns.Ns),
 	})
 }
 
