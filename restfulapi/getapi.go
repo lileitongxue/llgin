@@ -2,6 +2,7 @@ package restfulapi
 
 import (
 	myquery "llgin/database/query"
+	sq "llgin/structerr"
 	"net/http"
 	"strconv"
 
@@ -38,25 +39,22 @@ func GetClusterPoolList(c *gin.Context) {
 	})
 }
 
+type NsAppname struct {
+	Ns      string `form:"ns" binding:"required"`
+	AppName string `form:"appname" binding:"required"`
+}
+
 //api接口提供pod_pool的信息,以id筛选
 func GetPodInfo(c *gin.Context) {
-	ns := c.DefaultQuery("ns", "gaojihealth")
-	appname := c.Query("appname")
-	if ns == "" {
+	var Na NsAppname
+	if bindErr := c.Bind(&Na); bindErr != nil {
 		c.JSON(400, gin.H{
-			"error": "ERROR: param is invaid,param shoud be ns",
+			"error": sq.ParamBindErr{Err: bindErr.Error()}.Error(),
 		})
 		return
 	}
-	if appname == "" {
-		c.JSON(400, gin.H{
-			"error": "ERROR: param is invaid,param shoud be appname ",
-		})
-		return
-	}
-	//whichInt, _ := strconv.Atoi(which)
 	c.JSON(http.StatusOK, gin.H{
-		"pod_pool": myquery.GetPodPoolInfo(appname, ns),
+		"pod_pool": myquery.GetPodPoolInfo(Na.AppName, Na.Ns),
 	})
 }
 
@@ -69,37 +67,33 @@ func GetPodPoolList(c *gin.Context) {
 
 //api接口提供deployments_pool的信息,以id筛选
 func GetDeploymentInfo(c *gin.Context) {
-	ns := c.DefaultQuery("ns", "gaojihealth")
-	//whichInt, _ := strconv.Atoi(which)
-	appname := c.Query("appname")
-	if ns == "" {
+	var Na NsAppname
+	if bindErr := c.Bind(&Na); bindErr != nil {
 		c.JSON(400, gin.H{
-			"error": "ERROR: param is invaid,param shoud be ns",
-		})
-		return
-	}
-	if appname == "" {
-		c.JSON(400, gin.H{
-			"error": "ERROR: param is invaid,param shoud be appname ",
+			"error": sq.ParamBindErr{Err: bindErr.Error()}.Error(),
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"deployments_pool": myquery.GetDeployPoolInfo(appname, ns),
+		"deployments_pool": myquery.GetDeployPoolInfo(Na.AppName, Na.Ns),
 	})
+}
+
+type Ns struct {
+	Ns string `form:"ns" binding:"required"`
 }
 
 //api接口提供deployments_pool的全量信息
 func GetDeploymentList(c *gin.Context) {
-	ns := c.Query("ns")
-	if ns == "" {
+	var ns Ns
+	if bindErr := c.Bind(&ns); bindErr != nil {
 		c.JSON(400, gin.H{
-			"error": "ERROR: param is invaid,param shoud be ns",
+			"error": sq.ParamBindErr{Err: bindErr.Error()}.Error(),
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"deployments_pool": myquery.GetDeployPoolList(ns),
+		"deployments_pool": myquery.GetDeployPoolList(ns.Ns),
 	})
 }
 

@@ -34,11 +34,12 @@ func GetDeployPoolInfo(appname string, ns string) (InfoDeployPool []structerr.De
 			&a.Selector,
 			&a.Desired,
 			&a.Availabel,
+			&a.ClusterID,
 			&a.CreateTime); err != nil {
 			log.Fatal(err)
 		}
 
-		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n labels: %s\n version: %d\n selector: %s\n desired: %s\n availabels: %s\n create_time: %s\n",
+		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n labels: %s\n version: %d\n selector: %s\n desired: %d\n availabels: %d\n cluster_id: %d\n create_time: %s\n",
 			a.ID,
 			a.Name,
 			a.Namespace,
@@ -47,6 +48,7 @@ func GetDeployPoolInfo(appname string, ns string) (InfoDeployPool []structerr.De
 			a.Selector,
 			a.Desired,
 			a.Availabel,
+			a.ClusterID,
 			a.CreateTime)
 		InfoDeployPool = append(InfoDeployPool, a)
 	}

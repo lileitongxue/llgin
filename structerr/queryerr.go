@@ -2,11 +2,19 @@ package structerr
 
 import "fmt"
 
-type NsAndIp struct {
-	Ns string
-	IP string
+type ParamBindErr struct {
+	Err string
 }
 
-func (err NsAndIp) Error() string {
-	return fmt.Sprintf("param %s is invalid, value is %s", err.Ns, err.IP)
+func (err ParamBindErr) Error() string {
+	return fmt.Sprintf("resolve param error,reason: %s", err.Err)
+}
+
+type ParamInvalidErr struct {
+	ParamName  string
+	ParamValue string
+}
+
+func (err ParamInvalidErr) Error() string {
+	return fmt.Sprintln("param %s is invalid,value is %s", err.ParamName, err.ParamValue)
 }
