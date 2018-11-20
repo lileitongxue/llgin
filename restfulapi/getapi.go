@@ -9,17 +9,26 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//GetClusterPoolInfo 接口提供cluster_pool的信息，以id筛选
-func GetClusterPoolInfo(c *gin.Context) {
+type NodeName struct {
+	NodeName string `form:"nodename" binding:"required"`
+}
 
-	ns := c.Query("ns")
-	ip := c.Query("ip")
+//GetNodeInfo 接口提供hosts_pool的信息，以id筛选
+func GetNodeInfo(c *gin.Context) {
+
+	var Nn NodeName
+	if bindErr := c.Bind(&Nn); bindErr != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": sq.ParamBindErr{Err: bindErr.Error()}.Error(),
+		})
+		return
+	}
 	c.JSON(http.StatusOK, gin.H{
-		"cluster_pool": myquery.GetClusterPoolInfo(ns, ip),
+		"node_info": myquery.GetNodeName(Nn.NodeName),
 	})
 }
 
-//GetClusterPoolList 接口提供cluster_pool的全量信息
+//GetAllNodes 接口提供hosts_pool的全量name信息
 func GetAllNodes(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
