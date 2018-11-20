@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//api接口提供cluster_pool的信息，以id筛选
+//GetClusterPoolInfo 接口提供cluster_pool的信息，以id筛选
 func GetClusterPoolInfo(c *gin.Context) {
 
 	ns := c.Query("ns")
@@ -19,7 +19,7 @@ func GetClusterPoolInfo(c *gin.Context) {
 	})
 }
 
-//api接口提供cluster_pool的全量信息
+//GetClusterPoolList 接口提供cluster_pool的全量信息
 func GetClusterPoolList(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
@@ -27,12 +27,13 @@ func GetClusterPoolList(c *gin.Context) {
 	})
 }
 
+//NsAppname 匹配required字段
 type NsAppname struct {
 	Ns      string `form:"ns" binding:"required"`
 	AppName string `form:"appname" binding:"required"`
 }
 
-//api接口提供pod_pool的信息,以id筛选
+//GetPodInfo api接口提供pod_pool的信息,以id筛选
 func GetPodInfo(c *gin.Context) {
 
 	var Na NsAppname
@@ -47,7 +48,7 @@ func GetPodInfo(c *gin.Context) {
 	})
 }
 
-//api接口提供pod_pool的全量信息
+//GetPodPoolList api接口提供pod_pool的全量信息
 func GetPodPoolList(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
@@ -55,7 +56,7 @@ func GetPodPoolList(c *gin.Context) {
 	})
 }
 
-//api接口提供deployments_pool的信息,以id筛选
+//GetDeploymentInfo api接口提供deployments_pool的信息,以id筛选
 func GetDeploymentInfo(c *gin.Context) {
 
 	var Na NsAppname
@@ -70,11 +71,12 @@ func GetDeploymentInfo(c *gin.Context) {
 	})
 }
 
+//Ns 匹配required字段ns
 type Ns struct {
 	Ns string `form:"ns" binding:"required"`
 }
 
-//api接口提供deployments_pool的全量信息
+//GetDeploymentList api接口提供deployments_pool的全量信息
 func GetDeploymentList(c *gin.Context) {
 
 	var ns Ns
@@ -89,7 +91,7 @@ func GetDeploymentList(c *gin.Context) {
 	})
 }
 
-//api接口提供configmaps_pool的信息,以id筛选
+//GetConfigmapsPoolInfo api接口提供configmaps_pool的信息,以id筛选
 func GetConfigmapsPoolInfo(c *gin.Context) {
 
 	which := c.DefaultQuery("which", "1")
@@ -99,7 +101,7 @@ func GetConfigmapsPoolInfo(c *gin.Context) {
 	})
 }
 
-//api接口提供configmaps_pool的全量信息
+//GetConfigmapsPoolList api接口提供configmaps_pool的全量信息
 func GetConfigmapsPoolList(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{

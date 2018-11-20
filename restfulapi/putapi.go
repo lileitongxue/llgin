@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//Putapi 提供put接口
 func Putapi(router *gin.Engine) {
 
 	router.PUT("/put", func(c *gin.Context) {
