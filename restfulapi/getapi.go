@@ -37,7 +37,7 @@ func GetPodInfo(c *gin.Context) {
 
 	var Na NsAppname
 	if bindErr := c.Bind(&Na); bindErr != nil {
-		c.JSON(400, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": sq.ParamBindErr{Err: bindErr.Error()}.Error(),
 		})
 		return
@@ -60,7 +60,7 @@ func GetDeploymentInfo(c *gin.Context) {
 
 	var Na NsAppname
 	if bindErr := c.Bind(&Na); bindErr != nil {
-		c.JSON(400, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": sq.ParamBindErr{Err: bindErr.Error()}.Error(),
 		})
 		return
@@ -79,7 +79,7 @@ func GetDeploymentList(c *gin.Context) {
 
 	var ns Ns
 	if bindErr := c.Bind(&ns); bindErr != nil {
-		c.JSON(400, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": sq.ParamBindErr{Err: bindErr.Error()}.Error(),
 		})
 		return
