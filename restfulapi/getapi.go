@@ -14,19 +14,6 @@ func GetClusterPoolInfo(c *gin.Context) {
 
 	ns := c.Query("ns")
 	ip := c.Query("ip")
-	if ns == "" {
-		c.JSON(400, gin.H{
-			"error": "ERROR: param is invaid,param shoud be ns",
-		})
-		return
-	}
-	if ip == "" {
-		c.JSON(400, gin.H{
-			"error": "ERROR: param is invaid,param shoud be ip ",
-		})
-		return
-	}
-
 	c.JSON(http.StatusOK, gin.H{
 		"cluster_pool": myquery.GetClusterPoolInfo(ns, ip),
 	})
@@ -34,6 +21,7 @@ func GetClusterPoolInfo(c *gin.Context) {
 
 //api接口提供cluster_pool的全量信息
 func GetClusterPoolList(c *gin.Context) {
+
 	c.JSON(http.StatusOK, gin.H{
 		"cluster_pool": myquery.GetClusterPoolList(),
 	})
@@ -46,6 +34,7 @@ type NsAppname struct {
 
 //api接口提供pod_pool的信息,以id筛选
 func GetPodInfo(c *gin.Context) {
+
 	var Na NsAppname
 	if bindErr := c.Bind(&Na); bindErr != nil {
 		c.JSON(400, gin.H{
@@ -60,6 +49,7 @@ func GetPodInfo(c *gin.Context) {
 
 //api接口提供pod_pool的全量信息
 func GetPodPoolList(c *gin.Context) {
+
 	c.JSON(http.StatusOK, gin.H{
 		"pod_pool": myquery.GetPodPoolList(),
 	})
@@ -67,6 +57,7 @@ func GetPodPoolList(c *gin.Context) {
 
 //api接口提供deployments_pool的信息,以id筛选
 func GetDeploymentInfo(c *gin.Context) {
+
 	var Na NsAppname
 	if bindErr := c.Bind(&Na); bindErr != nil {
 		c.JSON(400, gin.H{
@@ -85,6 +76,7 @@ type Ns struct {
 
 //api接口提供deployments_pool的全量信息
 func GetDeploymentList(c *gin.Context) {
+
 	var ns Ns
 	if bindErr := c.Bind(&ns); bindErr != nil {
 		c.JSON(400, gin.H{
@@ -99,6 +91,7 @@ func GetDeploymentList(c *gin.Context) {
 
 //api接口提供configmaps_pool的信息,以id筛选
 func GetConfigmapsPoolInfo(c *gin.Context) {
+
 	which := c.DefaultQuery("which", "1")
 	whichInt, _ := strconv.Atoi(which)
 	c.JSON(http.StatusOK, gin.H{
@@ -108,6 +101,7 @@ func GetConfigmapsPoolInfo(c *gin.Context) {
 
 //api接口提供configmaps_pool的全量信息
 func GetConfigmapsPoolList(c *gin.Context) {
+
 	c.JSON(http.StatusOK, gin.H{
 		"configmaps_pool": myquery.GetConfigmapsPoolList(),
 	})
