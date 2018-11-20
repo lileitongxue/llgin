@@ -8,11 +8,12 @@ import (
 	"log"
 )
 
+//InfoDeployPool 返回切片类型的数据
 var InfoDeployPool = make([]structerr.DeploymentsPool, 0)
 
 //var ListDeployPool = make([]structerr.DeploymentsPool, 0)
 
-//GetClusterPoolInfo 获取一条数据的详细信息
+//GetDeployPoolInfo 获取一条数据的详细信息
 func GetDeployPoolInfo(ns string) (InfoDeployPool []structerr.DeploymentsPool) {
 
 	var a structerr.DeploymentsPool
@@ -61,7 +62,7 @@ func GetDeployPoolInfo(ns string) (InfoDeployPool []structerr.DeploymentsPool) {
 	return
 }
 
-//GetClusterPoolList 获取集群信息列表
+//GetDeployPoolList 获取集群信息列表
 func GetDeployPoolList(ns string) []string {
 
 	//var a structerr.DeploymentsPool

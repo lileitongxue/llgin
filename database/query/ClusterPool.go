@@ -7,7 +7,10 @@ import (
 	"log"
 )
 
+//InfoClusterPool 返回切片信息
 var InfoClusterPool = make([]structerr.ClusterPool, 0)
+
+//ListClusterPool 返回数据以切片的方式
 var ListClusterPool = make([]structerr.ClusterPool, 0)
 
 //GetClusterPoolInfo 获取一条数据的详细信息
@@ -37,15 +40,15 @@ func GetClusterPoolInfo(ns string, ip string) (InfoClusterPool []structerr.Clust
 			log.Fatal(err)
 		}
 
-		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n clusterip: %s\n clusterport: %d\n clustertoken: %s\n clusterinfo: %s\n createtime: %s\n",
-			a.ID,
-			a.Name,
-			a.Namespace,
-			a.ClusterIP,
-			a.ClusterPort,
-			a.ClusterToken,
-			a.ClusterInfo,
-			a.CreateTime)
+		// fmt.Printf(" id: %d\n name: %s\n namespace: %s\n clusterip: %s\n clusterport: %d\n clustertoken: %s\n clusterinfo: %s\n createtime: %s\n",
+		// 	a.ID,
+		// 	a.Name,
+		// 	a.Namespace,
+		// 	a.ClusterIP,
+		// 	a.ClusterPort,
+		// 	a.ClusterToken,
+		// 	a.ClusterInfo,
+		// 	a.CreateTime)
 		InfoClusterPool = append(InfoClusterPool, a)
 	}
 	//end := time.Now()
@@ -70,15 +73,15 @@ func GetClusterPoolList() (ListClusterPool []structerr.ClusterPool) {
 			log.Fatal(err)
 		}
 
-		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n clusterip: %s\n clusterport: %d\n clustertoken: %s\n clusterinfo: %s\n createtime: %s\n",
-			a.ID,
-			a.Name,
-			a.Namespace,
-			a.ClusterIP,
-			a.ClusterPort,
-			a.ClusterToken,
-			a.ClusterInfo,
-			a.CreateTime)
+		// fmt.Printf(" id: %d\n name: %s\n namespace: %s\n clusterip: %s\n clusterport: %d\n clustertoken: %s\n clusterinfo: %s\n createtime: %s\n",
+		// 	a.ID,
+		// 	a.Name,
+		// 	a.Namespace,
+		// 	a.ClusterIP,
+		// 	a.ClusterPort,
+		// 	a.ClusterToken,
+		// 	a.ClusterInfo,
+		// 	a.CreateTime)
 		ListClusterPool = append(ListClusterPool, a)
 	}
 	return

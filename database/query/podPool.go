@@ -7,7 +7,10 @@ import (
 	"log"
 )
 
+//InfoPodPool 返回切片类型的数据
 var InfoPodPool = make([]structerr.PodPool, 0)
+
+//ListPodPool 返回切片类型的数据
 var ListPodPool = make([]structerr.PodPool, 0)
 
 //GetPodPoolInfo 获取一条数据的详细信息
@@ -98,7 +101,7 @@ func GetPodPoolList() (ListPodPool []structerr.PodPool) {
 			log.Fatal(err)
 		}
 
-		fmt.Printf(" id: %d\n name: %s\n namespace: %s\n version: %s\n hostIP: %s\n podIP: %s\n imagename: %s\n ports: %s\n resource: %s\n environment: %s\n mountsVolumes: %s\n startTime: %s\n podStatus: %d\n restartCount %d\n clusterID: %d\n createTime: %s\n",
+		fmt.Printf(" name: %s\n version: %s\n hostIP: %s\n podIP: %s\n imagename: %s\n ports: %s\n resource: %s\n environment: %s\n mountsVolumes: %s\n startTime: %s\n podStatus: %d\n restartCount %d\n createTime: %s\n",
 			//a.ID,
 			a.Name,
 			//a.Namespace,

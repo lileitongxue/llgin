@@ -7,7 +7,10 @@ import (
 	"log"
 )
 
+//InfoConfigmapsPool 返回切片类型的数据
 var InfoConfigmapsPool = make([]structerr.ConfigmapsPool, 0)
+
+//ListConfigmapsPool 返回切片类型的数据
 var ListConfigmapsPool = make([]structerr.ConfigmapsPool, 0)
 
 //GetConfigmapsPoolInfo 获取一条数据的详细信息

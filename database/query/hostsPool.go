@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-//GetAllNodes获取集群信息列表
+//GetAllNodes 获取集群信息列表
 func GetAllNodes() []string {
 
 	db := mydb.InitDB()
@@ -46,8 +46,10 @@ func GetAllNodes() []string {
 	return value
 }
 
+//NodeName 切片用来返回数据
 var NodeName = make([]structerr.HostsPool, 0)
 
+//GetNodeName 从表hosts_pool获取NodeName详细信息以host_name做筛选
 func GetNodeName(nodename string) (NodeName []structerr.HostsPool) {
 
 	var a structerr.HostsPool
