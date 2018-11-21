@@ -16,5 +16,6 @@ type ParamInvalidErr struct {
 }
 
 func (err ParamInvalidErr) Error() string {
+
 	return fmt.Sprintln("param %s is invalid,value is %s", err.ParamName, err.ParamValue)
 }
