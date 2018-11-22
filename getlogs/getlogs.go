@@ -58,12 +58,12 @@ func GenRequest(method, url, token string, body []byte) (*http.Response, error) 
 }
 
 //打印返回的数据
-func myPost(w http.ResponseWriter, r *http.Request) {
-	s, _ := ioutil.ReadAll(r.Body) //把  body 内容读入字符串 s
-	fmt.Fprintf(w, "%s", s)        //在返回页面中显示内容。
-}
+// func myPost(w http.ResponseWriter, r *http.Request) {
+// 	s, _ := ioutil.ReadAll(r.Body) //把  body 内容读入字符串 s
+// 	fmt.Fprintf(w, "%s", s)        //在返回页面中显示内容。
+// }
 
-func Get_instance_logs(c *gin.Context) {
+func GetInstanceLogs(c *gin.Context) {
 	token := "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkZWZhdWx0LXRva2VuLWsxeDA4Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImRlZmF1bHQiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiIzMzlhNmE1Zi0yMTUwLTExZTgtYjczNi01MjU0MDBhODNmYjEiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06ZGVmYXVsdCJ9.uSHRJwmQfH9MB9Nn6lum2jCc6G2lvL1iKGtKnBIDMWYkP2GAdV-s-LY18h30PNGf0xsl96qDpiZgMoavt1bKycWFfZ0EQ8YPG4FGUmTP_Y3gbANT-B3dNUBURueaa1WzPp4aGGZFoiyn7C9XY-RfdCAEZbQpJIRcVuYAvuZCqSyQ_EcGs616hiTjS8ASWBoB3seqhiMHyNMetz5RZt_UESjeBUV6nVCPNFvptSGxkTxiMUcWVyRRnUVl4diyJN0enpWQf1ywJIMNCryM3ns7EqjEPYkcWzvHFbsdUDn-Gr45z0SybEo6Q1TnKRlLN02fmUs4CKaoi4sWZGNo-IxbvA"
 	namespace := c.Query("ns")
 	instance := c.Query("instance")
