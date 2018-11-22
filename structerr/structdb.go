@@ -66,19 +66,19 @@ type EndpointsPool struct {
 
 type HostsPool struct {
 	//ID                  int       `json:"id" form:"id"`
-	Labels              string `json:"labels" form:"labels"`
-	HostIP              string `json:"host_ip" form:"host_ip"`
-	HostName            string `json:"hostname" form:"hostname"`
-	HostStatus          string `json:"hosts_status" form:"hosts_status"`
-	OS                  string `json:"os" form:"os"`
-	KubeletVersion      string `json:"kubelet_version" form:"kubelet_version"`
-	KubeletProxyVersion string `json:"kubelet_proxy_version" form:"kubelet_proxy_version"`
-	HostNetwork         string `json:"host_network" form:"host_network"`
-	HostCPU             string `json:"host_cpu" form:"host_cpu"`
-	HostMemory          string `json:"host_memory" form:"host_memory"`
-	HostUsedCPU         string `json:"host_used_cpu" form:"host_used_cpu"`
-	HostUsedMemory      string `json:"host_used_memory" form:"host_used_memory"`
-	RunningPod          string `json:"running_pod" form:"running_pod"`
+	Labels              []string `json:"labels" form:"labels"`
+	HostIP              string   `json:"host_ip" form:"host_ip"`
+	HostName            string   `json:"hostname" form:"hostname"`
+	HostStatus          string   `json:"hosts_status" form:"hosts_status"`
+	OS                  string   `json:"os" form:"os"`
+	KubeletVersion      string   `json:"kubelet_version" form:"kubelet_version"`
+	KubeletProxyVersion string   `json:"kubelet_proxy_version" form:"kubelet_proxy_version"`
+	HostNetwork         string   `json:"host_network" form:"host_network"`
+	HostCPU             string   `json:"host_cpu" form:"host_cpu"`
+	HostMemory          string   `json:"host_memory" form:"host_memory"`
+	HostUsedCPU         string   `json:"host_used_cpu" form:"host_used_cpu"`
+	HostUsedMemory      string   `json:"host_used_memory" form:"host_used_memory"`
+	RunningPod          string   `json:"running_pod" form:"running_pod"`
 	//ClusterID           int       `json:"" form:""`
 	CreateTime time.Time `json:"create_time" form:"create_time"`
 }

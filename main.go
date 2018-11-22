@@ -14,5 +14,5 @@ func main() {
 	r.GET("/api/v1/getAllNodes", rf.GetAllNodes)
 	r.GET("/api/v1/getDeploymentInfo", rf.GetDeploymentInfo)
 	r.GET("/api/v1/getDeploymentList", rf.GetDeploymentList)
-	r.Run(":8000")
+	r.Run(":8001")
 }
